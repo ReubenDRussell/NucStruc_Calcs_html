@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Qₛ &harr; B(E2) Calculator</title>
+	<style>
+		.Words{
+			position: fixed;
+			width: 100%;
+			left: 0;
+			text-align: center;
+			background-color: lightgray;
+		}
+		.Special_inputs{
+			position: fixed;
+			top: 37%;
+			width:100%;
+			text-align: center;
+		}
+		.Special_inputs2{
+			position: fixed;
+			top: 42%;
+/*			left: 65%;*/
+			width:100%;
+			text-align: center;
+		}
+		.Button{
+			position: fixed;
+			top: 49%;
+			width: 100%;
+			text-align: center;
+		}
+		.Outputs{
+			position: fixed;
+			top: 60%;
+			width: 100%;
+			text-align: center;
+		}
+		footer{
+			position: fixed;
+			text-align: center;
+			padding: 3px;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: lightgray;
+			color: gray;
+		}
+	</style>
+</head>
+<body>
+
+<h1 align="center"> <u> Q<sub>s</sub> &harr; B(E2) Calculator </u> </h1>
+
+<div class="Words">
+<!-- <div class="center"> -->
+	<p style="text-align:center"> For the purpose of estimating the limits of Q<sub>s</sub> for an axial rotor using B(E2)</p>
+	<p style="text-align:center"> While every precaution has been taken, there may be bugs. So, check first with known values </p>
+	<p style="text-align:center">I know this works for B(E2;0<sup>+</sup><sub>1</sub> &rarr; 2<sup>+</sup><sub>1</sub>), probably works for other B(E2)?</p>
+	<p style="text-align:center">This calculator is mainly for finding the axial rotor limit of Q<sub>s</sub>. Numbers given should be taken as |Q<sub>s</sub>(2<sup>+</sup><sub>1</sub>)|</p>
+	<p style="text-align:center">If changing the equation to look at a non 2<sup>+</sup><sub>1</sub> state Q<sub>s</sub> then look into Clebsch-Gordan coefficients (just to be sure)</p>
+</div><br><br>
+
+<div class="Special_inputs">
+<!-- <div class="center"> -->
+	<label for="input_menu_variable"> </label>
+	<select id="input_menu_variable" name="input_menu_variable">
+		<option value="BE2_to_Q_text"> B(E2)&uarr; &rarr; Qₛ </option>
+		<option value="Q_to_BE2_text"> Qₛ &rarr; B(E2)&uarr; </option>
+	</select>
+</div>
+
+<div class="Special_inputs2">
+<!-- <div class="center"> -->
+	<label for="Input_num";> Input: <br></label>
+	<input type="number" id="Input_num" name="Input_num"><br><br>
+</div>
+
+<div class="Button">
+<!-- <div class="center"> -->
+	<button style="background-color: #31d700;
+			border-color:black;
+			width: 75px;
+			height: 75px;
+			border-radius: 10px;
+			font-size: 20px"
+			type="button" onclick="Director()">GO</button>
+
+</div><br><br>
+
+
+<div class="Outputs">
+<!-- <div class="center"> -->
+	<label for="Output_data_1";>Output: <br></label>
+	<output id="Output_data_1"></output> <output id="Output_data_2"></output>
+	<!-- <p id="Hints_option">  </p> -->
+</div>
+
+
+<script>
+
+
+	function Director(){
+
+		var Input_num	= Number(document.getElementById("Input_num").value);
+
+		var input_menu_variable	= document.getElementById("input_menu_variable").value;
+
+
+		if(input_menu_variable == "BE2_to_Q_text"){
+			document.getElementById("Output_data_1").innerHTML = BE2_to_Q(Input_num);
+			document.getElementById("Output_data_2").innerHTML = "eb";
+		}
+
+		if(input_menu_variable == "Q_to_BE2_text"){
+			document.getElementById("Output_data_1").innerHTML = Q_to_BE2(Input_num);
+			document.getElementById("Output_data_2").innerHTML = "e<sup>2</sup>b<sup>2</sup>";
+		}
+
+	}
+
+
+	function BE2_to_Q(Input_num){
+		return (-2/7)*( ( (16*3.14159265359*Input_num)/5 )**(0.5) );
+	}
+
+	function Q_to_BE2(Input_num){
+		return (5/(16*3.14159265359))*( ((-7/2)*Input_num)**2 );
+	}
+
+
+</script>
+
+
+
+<footer>
+	<p> By Reuben </p>
+</footer>
+
+</body>
+</html>
